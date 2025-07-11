@@ -16,4 +16,4 @@ spring:
               predicates:
                 - Path=/api/client/**
               filters:
-                - SetStatus=403
+                - SetStatus=405
