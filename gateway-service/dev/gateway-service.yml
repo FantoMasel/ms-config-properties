@@ -1,1 +1,19 @@
-
+spring:
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: client-service
+              uri: lb://client-service
+              predicates:
+                - Path=/api/client/*
+                - Header=spring-cloud-course, .+
+              filters:
+                -  RemoveRequestHeader=spring-cloud-course
+            - id: block-route
+              uri: no://op  # Фиктивный URI
+              predicates:
+                - Path=/api/client/**
+              filters:
+                - SetStatus=403
