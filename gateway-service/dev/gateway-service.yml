@@ -17,3 +17,7 @@ spring:
                 - Path=/api/client/**
               filters:
                 - SetStatus=403
+            - id: client-updater
+              uri: lb://client-updater
+              predicates:
+                - Path=/api/update/*
